@@ -1,0 +1,63 @@
+[
+    {
+      "id": 1,
+      "name": "Hunza Valley",
+      "type": "Adventure",
+      "region": "Gilgit Baltistan",
+      "cost": 25000,
+      "weather": "Cold (12°C) ",
+      "best_season": "Summer",
+      "activities": ["Hiking", "Sightseeing", "Photography"],
+      "tags":["nature","mountains","hiking","adventure"],
+
+      "safety_rating": 5,
+      "user_rating": 4.8,
+      "image": "/images/hunza.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Gwadar Beach",
+      "type": "Relaxation",
+      "style":"Relaxation",
+      "region": "Balochistan",
+      "cost": 18000,
+      "weather": "Warm Sunny (32°C)",
+      "tags":["beach","ocean","relaxation","peaceful"],
+      "best_season": "Winter",
+      "activities": ["Swimming", "Sunbathing", "Boat Ride"],
+      "safety_rating": 4,
+      "user_rating": 4.5,
+      "image":"/images/gwadar.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Murree Hills",
+      "type": "Family",
+      "style":"Family",
+      "region": "Punjab",
+      "cost": 15000,
+      "weather": "Cold Snowy (2°C)",
+      "best_season": "All Year",
+      "activities": ["Shopping", "Cable Car", "Hiking"],
+      "tags":["nature","mountains","family","snow"],
+      "safety_rating": 4,
+      "user_rating": 4.3,
+      "image": "/images/murree.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Naran Kaghan",
+      "type": "Adventure",
+      "region": "KPK Khyber Pakhtunkhwa",
+      "style":"Adventure",
+      "cost": 22000,
+      "weather": "Cold Chilly (8°C)",
+      "best_season": "Summer",
+      "tags":["nature","lakes","mountains","adventure"],
+      "activities": ["Rafting", "Jeep Safari", "Lakeside Camping"],
+      "safety_rating": 5,
+      "user_rating": 4.7,
+      "image": "/images/naran.jpg"
+  
+    }
+  ]

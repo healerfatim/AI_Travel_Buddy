@@ -1,0 +1,4 @@
+/.venv
+/test_data.py
+/venv
+/__pycache__
