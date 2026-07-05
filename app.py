@@ -23,9 +23,10 @@ try:
     pg_host = os.getenv("PG_HOST", "localhost")
     pg_port = int(os.getenv("PG_PORT", 5432))
     pg_user = os.getenv("PG_USER", "postgres")
-    pg_pass = os.getenv("PG_PASS", "postgre")
+    pg_pass = os.getenv("PG_PASS")
     pg_db = os.getenv("PG_DB", "travel_buddy")
-
+    if not pg_pass:
+        raise RuntimeError("PG_PASS environment variable must be set")
     admin_conn = psycopg2.connect(host=pg_host, port=pg_port, dbname="postgres", user=pg_user, password=pg_pass, connect_timeout=3)
     admin_conn.autocommit = True
     cur = admin_conn.cursor()
