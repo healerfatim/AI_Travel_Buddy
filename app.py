@@ -32,7 +32,8 @@ try:
     cur = admin_conn.cursor()
     cur.execute("SELECT 1 FROM pg_database WHERE datname = %s", (pg_db,))
     if not cur.fetchone():
-        cur.execute(f"CREATE DATABASE {pg_db}")
+        from psycopg2 import sql
+        cur.execute(sql.SQL("CREATE DATABASE {}").format(sql.Identifier(pg_db)))
         print(f"Created database '{pg_db}'")
     cur.close()
     admin_conn.close()
@@ -221,12 +222,20 @@ def get_all_destinations():
 
 @app.route('/api/get_budget_breakdown')
 def get_budget_breakdown():
-    query = request.args.get('query')
+    query = request.args.get('query', '')
     destination = search_by_name(query)
     if destination is None:
         return jsonify({'error': 'Destination not found'}), 404
-    days = int(request.args.get('days'))
-    budget_per_day = destination['cost'] / days
+
+    days_raw = request.args.get('days')
+    try:
+        days = int(days_raw)
+    except (TypeError, ValueError):
+        return jsonify({'error': 'Invalid days parameter'}), 400
+    if days <= 0:
+        return jsonify({'error': 'days must be a positive integer'}), 400
+
+    budget_per_day = (destination.get('cost') or 0) / days
     return jsonify({day: budget_per_day for day in range(days)})
 
 def get_ml_recommendations(user_query, user_style, destinations):
@@ -281,11 +290,11 @@ def get_admin_stats():
 
 @app.route('/api/admin/update-destination', methods=['POST'])
 def update_destination():
-    new_dest = request.json
+    new_dest = request.get_json(silent=True) or {}
     defaults = {
         'name': 'Unnamed Destination',
-        'type': new_dest.get('style', 'Adventure'),
-        'style': new_dest.get('type', 'Adventure'),
+        'type': new_dest.get('type') or new_dest.get('style') or 'Adventure',
+        'style': new_dest.get('style') or new_dest.get('type') or 'Adventure',
         'region': 'Punjab',
         'cost': 10000,
         'weather': 'Moderate',
