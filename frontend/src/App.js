@@ -437,7 +437,7 @@ const App = () => {
               </div>
             </div>
 
-            {}
+            {null}
             <div className="budget-compare-section">
               <h3>Destination Feasibility</h3>
               <div className="compare-bar">
