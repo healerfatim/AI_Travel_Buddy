@@ -6,7 +6,7 @@ clients = []
 
 
 def get_temperature_from_destinations(location):
-    with open('destinations.json', 'r') as file:
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'destinations.json'), 'r', encoding='utf-8') as file:
         data = json.load(file)
 
     for item in data:
