@@ -26,9 +26,16 @@ async def handle_connection(websocket):
 
         async for raw_data in websocket:
             print(f"Received from {websocket.remote_address}: {raw_data}")
-            message = json.loads(raw_data)
-            location = message['location']
+            try:
+                message = json.loads(raw_data)
+            except json.JSONDecodeError:
+                await websocket.send(json.dumps({'error': 'Invalid JSON'}))
+                continue
 
+            location = message.get('location')
+            if not location:
+                await websocket.send(json.dumps({'error': 'Missing location'}))
+                continue
             temperature_data = get_temperature_from_destinations(location)
 
             if temperature_data is not None:
