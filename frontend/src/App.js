@@ -417,7 +417,7 @@ const App = () => {
               <button className="close-btn" onClick={() => setSelectedDest(null)}>&times;</button>
             </div>
 
-            {}
+            {null}
             <div className="plan-summary-cards">
               <div className="summary-card query-card">
                 <h4>Your Query</h4>
