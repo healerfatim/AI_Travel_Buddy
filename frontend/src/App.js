@@ -473,7 +473,7 @@ const App = () => {
               </div>
             </div>
 
-            {}
+            {null}
             <div className="itinerary-section">
               <h3>Day-by-Day Itinerary</h3>
               <table className="itinerary-table">
