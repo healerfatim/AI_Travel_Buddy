@@ -520,7 +520,7 @@ const App = () => {
               </table>
             </div>
 
-            {}
+            {null}
             <div className="budget-allocation-section">
               <h3>Budget Allocation</h3>
               <div className="allocation-bars">
